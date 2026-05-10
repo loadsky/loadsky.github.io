@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>a demo site.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #f8f5f0;
+    --ink: #1a1a1a;
+    --ink-light: #5c5c5c;
+    --rule: #d4cfc7;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Cormorant Garamond', 'Georgia', 'Times New Roman', serif;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .page {
+    width: 100%;
+    max-width: 720px;
+    padding: 8vw 6vw;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  /* ── Masthead ── */
+  .masthead {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .masthead-line {
+    flex: 1;
+    height: 1px;
+    background: var(--rule);
+  }
+
+  .masthead-date {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    white-space: nowrap;
+  }
+
+  /* ── Title ── */
+  .title-block {
+    position: relative;
+  }
+
+  .site-title {
+    font-family: 'Playfair Display', 'Georgia', 'Times New Roman', serif;
+    font-weight: 900;
+    font-size: clamp(2.5rem, 5.5vw, 4rem);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    font-style: italic;
+    color: var(--ink);
+  }
+
+  .ornament {
+    margin: 2.5rem 0 0 0.1rem;
+    width: 2.5rem;
+    height: 1px;
+    background: var(--ink);
+  }
+
+  /* ── Content Grid ── */
+  .content-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    padding-top: 0.5rem;
+  }
+
+  .col-label {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    margin-bottom: 0.75rem;
+  }
+
+  .col-text {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: var(--ink-light);
+  }
+
+  .col-text p + p {
+    margin-top: 1.25rem;
+  }
+
+  /* ── Nav ── */
+  .nav-rule {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--rule);
+  }
+
+  .nav-line {
+    flex: 1;
+    height: 1px;
+    background: var(--rule);
+  }
+
+  .nav-link {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--ink);
+    text-decoration: none;
+    white-space: nowrap;
+    transition: opacity 0.25s;
+  }
+
+  .nav-link:hover {
+    opacity: 0.45;
+  }
+
+  .nav-dot {
+    width: 3px;
+    height: 3px;
+    background: var(--rule);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  /* ── Colophon ── */
+  .colophon {
+    padding-top: 0.25rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.75rem;
+    font-style: italic;
+    color: #b0aaa0;
+  }
+
+  @media (max-width: 540px) {
+    .content-grid {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    .page {
+      padding: 10vw 5vw;
+      gap: 2rem;
+    }
+
+    .nav-rule {
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .nav-dot {
+      display: none;
+    }
+  }
+</style>
+</head>
+<body>
+  <main class="page">
+
+    <!-- Masthead -->
+    <div class="masthead">
+      <span class="masthead-line"></span>
+      <span class="masthead-date">Spring 2026 &nbsp;·&nbsp; Vol. I</span>
+      <span class="masthead-line"></span>
+    </div>
+
+    <!-- Title -->
+    <div class="title-block">
+      <h1 class="site-title">a demo<br>site.</h1>
+      <div class="ornament"></div>
+    </div>
+
+    <!-- Content -->
+    <div class="content-grid">
+      <div>
+        <div class="col-label">Note</div>
+        <div class="col-text">
+          <p>This is a demonstration page — a quiet placeholder in the margins of the web.</p>
+        </div>
+      </div>
+      <div class="col-text">
+        <p>Nothing here clamours for attention. No banners, no urgency, no buttons demanding a click. Just words set on a page, in the old way, waiting for a reader who might pause long enough to notice.</p>
+      </div>
+    </div>
+
+    <!-- Foot links -->
+    <div class="nav-rule">
+      <span class="nav-line"></span>
+      <a href="/" class="nav-link">Index</a>
+      <span class="nav-dot"></span>
+      <a href="mailto:hello@demo.ovo.re" class="nav-link">Letter</a>
+      <span class="nav-dot"></span>
+      <a href="https://github.com/loadsky/loadsky.github.io" class="nav-link">Colophon</a>
+      <span class="nav-line"></span>
+    </div>
+
+    <div class="colophon">Printed by hand. No tracking, no cookies, no JavaScript.</div>
+
+  </main>
+</body>
+</html>
