@@ -6,224 +6,434 @@
 <title>a demo site.</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
 <style>
   :root {
-    --paper: #f8f5f0;
-    --ink: #1a1a1a;
-    --ink-light: #5c5c5c;
-    --rule: #d4cfc7;
+    --bg:      #fafaf8;
+    --fg:      #1a1a1a;
+    --fg-dim:  #6b6b6b;
+    --fg-fade: #b0b0a8;
+    --rule:    #e5e3dc;
+    --hover:   #999;
   }
 
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
 
   body {
-    background: var(--paper);
-    color: var(--ink);
-    font-family: 'Cormorant Garamond', 'Georgia', 'Times New Roman', serif;
+    background: var(--bg);
+    color: var(--fg);
+    font-family: 'Newsreader', 'Georgia', 'Times New Roman', serif;
+    font-weight: 400;
     min-height: 100vh;
     display: flex;
-    align-items: center;
     justify-content: center;
   }
 
   .page {
     width: 100%;
-    max-width: 720px;
-    padding: 8vw 6vw;
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 3rem;
+    max-width: 840px;
+    padding: 10vh 6vw 6vh;
+    display: flex;
+    flex-direction: column;
+    gap: 5rem;
   }
 
-  /* ── Masthead ── */
-  .masthead {
+  /* ── Header ── */
+  .site-header {
     display: flex;
-    align-items: center;
-    gap: 1rem;
-    padding-bottom: 1.5rem;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding-bottom: 2rem;
     border-bottom: 1px solid var(--rule);
   }
 
-  .masthead-line {
-    flex: 1;
-    height: 1px;
-    background: var(--rule);
+  .site-title {
+    font-family: 'Syne', 'Helvetica Neue', 'Arial', sans-serif;
+    font-weight: 600;
+    font-size: clamp(1.3rem, 2.2vw, 1.6rem);
+    letter-spacing: -0.01em;
+    color: var(--fg);
   }
 
-  .masthead-date {
-    font-family: 'Cormorant Garamond', serif;
+  .site-title em {
+    font-style: normal;
+    color: var(--fg-dim);
+    font-weight: 400;
+  }
+
+  .site-index-count {
+    font-family: 'Syne', sans-serif;
     font-size: 0.7rem;
-    letter-spacing: 0.35em;
+    font-weight: 500;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: var(--ink-light);
+    color: var(--fg-dim);
+  }
+
+  /* ── Note ── */
+  .note {
+    font-size: 1.3rem;
+    line-height: 1.6;
+    color: var(--fg-dim);
+    max-width: 36rem;
+  }
+
+  /* ── Index ── */
+  .catalog {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .catalog-header {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 2rem;
+    padding-bottom: 0.85rem;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .catalog-h {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--fg-dim);
+  }
+
+  .catalog-row {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 2rem;
+    padding: 1.05rem 0;
+    border-bottom: 1px dotted var(--rule);
+    animation: rowIn 0.45s both;
+  }
+
+  .catalog-row:nth-child(1) { animation-delay: 0.03s; }
+  .catalog-row:nth-child(2) { animation-delay: 0.07s; }
+  .catalog-row:nth-child(3) { animation-delay: 0.11s; }
+  .catalog-row:nth-child(4) { animation-delay: 0.15s; }
+  .catalog-row:nth-child(5) { animation-delay: 0.19s; }
+  .catalog-row:nth-child(6) { animation-delay: 0.23s; }
+  .catalog-row:nth-child(7) { animation-delay: 0.27s; }
+  .catalog-row:nth-child(8) { animation-delay: 0.31s; }
+
+  @keyframes rowIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .catalog-name {
+    font-weight: 500;
+    font-size: 1.05rem;
+  }
+
+  .catalog-name a {
+    color: var(--fg);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .catalog-name a:hover {
+    color: var(--hover);
+  }
+
+  .catalog-desc {
+    font-size: 0.95rem;
+    line-height: 1.55;
+    color: var(--fg-dim);
+  }
+
+  .catalog-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem 1rem;
+    margin-top: 0.55rem;
+    font-family: 'Syne', sans-serif;
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--fg-fade);
+  }
+
+  .catalog-meta-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3em;
     white-space: nowrap;
   }
 
-  /* ── Title ── */
-  .title-block {
-    position: relative;
+  .catalog-meta-lang {
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--fg-fade);
+    flex-shrink: 0;
   }
 
-  .site-title {
-    font-family: 'Playfair Display', 'Georgia', 'Times New Roman', serif;
-    font-weight: 900;
-    font-size: clamp(2.5rem, 5.5vw, 4rem);
-    line-height: 1.1;
-    letter-spacing: -0.02em;
+  .catalog-meta-tag {
+    display: inline-block;
+    padding: 0.15em 0.55em;
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+    font-size: 0.6rem;
+    letter-spacing: 0.06em;
+    color: var(--fg-dim);
+  }
+
+  .catalog-meta a {
+    color: var(--fg-dim);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .catalog-meta a:hover {
+    color: var(--fg);
+  }
+
+  .catalog-empty,
+  .catalog-error {
+    padding: 2rem 0;
+    font-size: 0.95rem;
+    color: var(--fg-fade);
     font-style: italic;
-    color: var(--ink);
   }
 
-  .ornament {
-    margin: 2.5rem 0 0 0.1rem;
-    width: 2.5rem;
-    height: 1px;
-    background: var(--ink);
-  }
+  .catalog-error { color: #b66; font-style: normal; }
 
-  /* ── Content Grid ── */
-  .content-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
-    padding-top: 0.5rem;
-  }
-
-  .col-label {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 0.7rem;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--ink-light);
-    margin-bottom: 0.75rem;
-  }
-
-  .col-text {
-    font-size: 1.05rem;
-    line-height: 1.8;
-    color: var(--ink-light);
-  }
-
-  .col-text p + p {
-    margin-top: 1.25rem;
-  }
-
-  /* ── Nav ── */
-  .nav-rule {
+  /* ── Footer ── */
+  .site-footer {
     display: flex;
-    align-items: center;
-    gap: 1.5rem;
+    justify-content: space-between;
+    align-items: baseline;
     padding-top: 1.5rem;
     border-top: 1px solid var(--rule);
   }
 
-  .nav-line {
-    flex: 1;
-    height: 1px;
-    background: var(--rule);
+  .footer-links {
+    display: flex;
+    gap: 2rem;
   }
 
-  .nav-link {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 0.75rem;
-    letter-spacing: 0.28em;
+  .footer-links a {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: var(--ink);
+    color: var(--fg-dim);
     text-decoration: none;
-    white-space: nowrap;
-    transition: opacity 0.25s;
+    transition: color 0.2s;
   }
 
-  .nav-link:hover {
-    opacity: 0.45;
+  .footer-links a:hover {
+    color: var(--fg);
   }
 
-  .nav-dot {
-    width: 3px;
-    height: 3px;
-    background: var(--rule);
-    border-radius: 50%;
-    flex-shrink: 0;
-  }
-
-  /* ── Colophon ── */
-  .colophon {
-    padding-top: 0.25rem;
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 0.75rem;
+  .footer-aux {
+    font-size: 0.8rem;
+    color: var(--fg-fade);
     font-style: italic;
-    color: #b0aaa0;
   }
 
   @media (max-width: 540px) {
-    .content-grid {
-      grid-template-columns: 1fr;
-      gap: 1.5rem;
-    }
-
-    .page {
-      padding: 10vw 5vw;
-      gap: 2rem;
-    }
-
-    .nav-rule {
-      flex-wrap: wrap;
-      gap: 0.75rem;
-    }
-
-    .nav-dot {
-      display: none;
-    }
+    .page { padding: 8vh 5vw 5vh; gap: 3rem; }
+    .site-header { flex-direction: column; align-items: flex-start; gap: 0.35rem; }
+    .catalog-header,
+    .catalog-row { grid-template-columns: 1fr; gap: 0.25rem; }
+    .note { font-size: 1.15rem; }
+    .site-footer { flex-direction: column; gap: 0.75rem; }
+    .footer-links { gap: 1.5rem; }
   }
 </style>
 </head>
 <body>
   <main class="page">
+    <header class="site-header">
+      <h1 class="site-title">a demo <em>site</em></h1>
+      <span class="site-index-count" id="index-count"></span>
+    </header>
 
-    <!-- Masthead -->
-    <div class="masthead">
-      <span class="masthead-line"></span>
-      <span class="masthead-date">Spring 2026 &nbsp;·&nbsp; Vol. I</span>
-      <span class="masthead-line"></span>
-    </div>
+    <p class="note">An index of public repositories, updated on arrival.</p>
 
-    <!-- Title -->
-    <div class="title-block">
-      <h1 class="site-title">a demo<br>site.</h1>
-      <div class="ornament"></div>
-    </div>
-
-    <!-- Content -->
-    <div class="content-grid">
-      <div>
-        <div class="col-label">Note</div>
-        <div class="col-text">
-          <p>This is a demonstration page — a quiet placeholder in the margins of the web.</p>
-        </div>
+    <section class="catalog">
+      <div class="catalog-header">
+        <span class="catalog-h">Project</span>
+        <span class="catalog-h">Description</span>
       </div>
-      <div class="col-text">
-        <p>Nothing here clamours for attention. No banners, no urgency, no buttons demanding a click. Just words set on a page, in the old way, waiting for a reader who might pause long enough to notice.</p>
+      <div id="catalog-body">
+        <div class="catalog-empty">Loading&hellip;</div>
       </div>
-    </div>
+    </section>
 
-    <!-- Foot links -->
-    <div class="nav-rule">
-      <span class="nav-line"></span>
-      <a href="/" class="nav-link">Index</a>
-      <span class="nav-dot"></span>
-      <a href="mailto:hello@demo.ovo.re" class="nav-link">Letter</a>
-      <span class="nav-dot"></span>
-      <a href="https://github.com/loadsky/loadsky.github.io" class="nav-link">Colophon</a>
-      <span class="nav-line"></span>
-    </div>
-
-    <div class="colophon">Printed by hand. No tracking, no cookies, no JavaScript.</div>
-
+    <footer class="site-footer">
+      <div class="footer-links">
+        <a href="/">Index</a>
+        <a href="mailto:demo@ovo.re">Letter</a>
+        <a href="https://github.com/loadsky/loadsky.github.io">Source</a>
+      </div>
+      <span class="footer-aux">Set by hand.</span>
+    </footer>
   </main>
+
+  <script>
+  (function () {
+    var SITE = 'https://demo.ovo.re/';
+    var CACHE_KEY = 'gh-pages-index';
+    var CACHE_TTL = 5 * 60 * 1000;
+    var USER = 'loadsky';
+    var API = 'https://api.github.com/users/' + USER + '/repos?type=owner&per_page=100&sort=updated';
+
+    var body = document.getElementById('catalog-body');
+    var countEl = document.getElementById('index-count');
+
+    // approximate language colors (GitHub linguist palette, sampled)
+    var LANG_COLORS = {
+      JavaScript:'#f1e05a', TypeScript:'#3178c6', Python:'#3572A5', Go:'#00ADD8',
+      Rust:'#dea584', Java:'#b07219', Ruby:'#701516', C:'#555555', 'C++':'#f34b7d',
+      'C#':'#178600', PHP:'#4F5D95', Swift:'#F05138', Kotlin:'#A97BFF',
+      Dart:'#00B4AB', Elixir:'#6e4a7e', Clojure:'#db5855', Haskell:'#5e5086',
+      Lua:'#000080', Zig:'#ec915c', Shell:'#89e051', HTML:'#e34c26', CSS:'#563d7c',
+      SCSS:'#c6538c', Vue:'#41b883', Svelte:'#ff3e00', MDX:'#fcb32c',
+      Nix:'#7e7eff', Dockerfile:'#384d54', Makefile:'#427819', R:'#198CE7',
+      Julia:'#a270ba', Scala:'#c22d40', Erlang:'#B83998', OCaml:'#3be133'
+    };
+
+    function timeAgo(dateStr) {
+      var now = Date.now();
+      var then = new Date(dateStr).getTime();
+      var diff = now - then;
+      var mins = Math.floor(diff / 60000);
+      if (mins < 1)  return 'just now';
+      if (mins < 60) return mins + 'm ago';
+      var hours = Math.floor(mins / 60);
+      if (hours < 24) return hours + 'h ago';
+      var days = Math.floor(hours / 24);
+      if (days < 30) return days + 'd ago';
+      var months = Math.floor(days / 30);
+      if (months < 12) return months + 'mo ago';
+      return Math.floor(months / 12) + 'y ago';
+    }
+
+    function formatDate(dateStr) {
+      var d = new Date(dateStr);
+      var yyyy = d.getFullYear();
+      var MM   = ('0' + (d.getMonth() + 1)).slice(-2);
+      var dd   = ('0' + d.getDate()).slice(-2);
+      var hh   = ('0' + d.getHours()).slice(-2);
+      var mm   = ('0' + d.getMinutes()).slice(-2);
+      var ss   = ('0' + d.getSeconds()).slice(-2);
+      return yyyy + '-' + MM + '-' + dd + ' ' + hh + ':' + mm + ':' + ss;
+    }
+
+    function esc(s) {
+      var d = document.createElement('div');
+      d.textContent = s;
+      return d.innerHTML;
+    }
+
+    function buildMeta(r) {
+      var parts = [];
+
+      // language
+      if (r.language) {
+        var color = LANG_COLORS[r.language] || '#999';
+        parts.push(
+          '<span class="catalog-meta-item">' +
+            '<span class="catalog-meta-lang" style="background:' + color + '"></span>' +
+            esc(r.language) +
+          '</span>'
+        );
+      }
+
+      // stars
+      if (r.stargazers_count > 0) {
+        parts.push('<span class="catalog-meta-item">★ ' + r.stargazers_count + '</span>');
+      }
+
+      // topics (max 3)
+      if (r.topics && r.topics.length) {
+        r.topics.slice(0, 3).forEach(function (t) {
+          parts.push('<span class="catalog-meta-tag">' + esc(t) + '</span>');
+        });
+      }
+
+      // updated
+      if (r.updated_at) {
+        parts.push('<span class="catalog-meta-item" title="' + formatDate(r.updated_at) + '">' + timeAgo(r.updated_at) + '</span>');
+      }
+
+      // source
+      if (r.html_url) {
+        parts.push('<span class="catalog-meta-item"><a href="' + r.html_url + '">source ↗</a></span>');
+      }
+
+      return parts.length ? '<div class="catalog-meta">' + parts.join('') + '</div>' : '';
+    }
+
+    function render(repos) {
+      countEl.textContent = repos.length + ' project' + (repos.length !== 1 ? 's' : '');
+
+      if (!repos.length) {
+        body.innerHTML = '<div class="catalog-empty">No affiliated projects found.</div>';
+        return;
+      }
+
+      var html = '';
+      repos.forEach(function (r) {
+        var url = SITE + r.name;
+        var desc = r.description || '';
+        if (desc.length > 140) desc = desc.slice(0, 137) + '&hellip;';
+        html +=
+          '<div class="catalog-row">' +
+            '<span class="catalog-name"><a href="' + url + '">' + r.name + '</a></span>' +
+            '<div>' +
+              '<div class="catalog-desc">' + (desc || '&mdash;') + '</div>' +
+              buildMeta(r) +
+            '</div>' +
+          '</div>';
+      });
+      body.innerHTML = html;
+    }
+
+    function tryCache() {
+      try {
+        var raw = localStorage.getItem(CACHE_KEY);
+        if (!raw) return null;
+        var entry = JSON.parse(raw);
+        if (Date.now() - entry.ts > CACHE_TTL) return null;
+        return entry.data;
+      } catch (_) { return null; }
+    }
+
+    function fetchAndRender() {
+      fetch(API)
+        .then(function (r) {
+          if (!r.ok) throw new Error(r.status);
+          return r.json();
+        })
+        .then(function (repos) {
+          var pagesRepos = repos.filter(function (r) { return r.has_pages; });
+          localStorage.setItem(CACHE_KEY, JSON.stringify({ ts: Date.now(), data: pagesRepos }));
+          render(pagesRepos);
+        })
+        .catch(function () {
+          body.innerHTML = '<div class="catalog-error">Unable to fetch the index. Try again shortly.</div>';
+        });
+    }
+
+    var cached = tryCache();
+    if (cached) {
+      render(cached);
+      return;
+    }
+
+    fetchAndRender();
+  })();
+  </script>
 </body>
 </html>
